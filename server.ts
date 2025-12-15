@@ -1,4 +1,8 @@
-import "dotenv/config";
+import * as dotenv from "dotenv";
+
+dotenv.config({
+  path: "/home/ssm-user/my-naver-token/.env",
+});
 
 import express from "express";
 import bodyParser from "body-parser";
