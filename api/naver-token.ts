@@ -1,4 +1,4 @@
-import { getNaverAccessToken } from "../lib/naverAuth";
+import { getNaverAccessToken } from "../lib/naverAuth.js";
 
 export default async function handler(req: any, res: any) {
   try {
