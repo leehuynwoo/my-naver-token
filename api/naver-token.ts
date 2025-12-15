@@ -1,46 +1,13 @@
-import axios from "axios";
-import * as bcrypt from "bcryptjs";
+import { getNaverAccessToken } from "../lib/naverAuth";
 
 export default async function handler(req: any, res: any) {
   try {
-    const clientId = process.env.clientId;
-    const clientSecret = process.env.clientSecret;
-
-    if (!clientId || !clientSecret) {
-      return res.status(500).json({
-        error: "Missing NAVER env variables",
-      });
-    }
-
-    const timestamp = Date.now().toString();
-    const password = `${clientId}_${timestamp}`;
-
-    const hash = bcrypt.hashSync(password, clientSecret);
-    const clientSecretSign = Buffer.from(hash).toString("base64");
-
-    const params = new URLSearchParams({
-      grant_type: "client_credentials",
-      client_id: clientId,
-      timestamp,
-      client_secret_sign: clientSecretSign,
-      type: "SELF",
-    });
-
-    const response = await axios.post(
-      "https://api.commerce.naver.com/external/v1/oauth2/token",
-      params,
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
-
-    return res.status(200).json(response.data);
+    const token = await getNaverAccessToken();
+    return res.status(200).json({ access_token: token });
   } catch (err: any) {
     return res.status(500).json({
       error: "네이버 토큰 발급 실패",
-      detail: err.response?.data || err.message,
+      detail: err.message,
     });
   }
 }
