@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getNaverAccessToken } from "../lib/naverAuth.js";
+import { getNaverAccessToken } from "../lib/naverAuth";
 
 export default async function categoriesHandler(req, res) {
   try {
