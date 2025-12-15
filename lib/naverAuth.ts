@@ -2,8 +2,8 @@ import axios from "axios";
 import * as bcrypt from "bcryptjs";
 
 export async function getNaverAccessToken() {
-  const clientId = process.env.clientId;
-  const clientSecret = process.env.clientSecret;
+  const clientId = process.env.NAVER_CLIENT_ID;
+  const clientSecret = process.env.NAVER_CLIENT_SECRET;
 
   if (!clientId || !clientSecret) {
     throw new Error("Missing NAVER env variables");
