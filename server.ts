@@ -4,13 +4,15 @@ dotenv.config({
   path: "/home/ssm-user/my-naver-token/.env",
 });
 
+
+
 import express from "express";
 import bodyParser from "body-parser";
 import naverTokenHandler from "./api/naver-token.js";
 import categoriesHandler from "./api/categories.js";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
