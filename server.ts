@@ -10,7 +10,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import naverTokenHandler from "./api/naver-token.js";
 import categoriesHandler from "./api/categories.js";
-import originProductsHandler from "./api/origin-products.ts";
+import originProductsHandler from "./api/origin-products.js";
 
 const app = express();
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;;

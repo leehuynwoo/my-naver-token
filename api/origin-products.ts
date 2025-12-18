@@ -1,4 +1,3 @@
-
 import { Request, Response } from "express";
 import axios from "axios";
 import { getNaverAccessToken } from "../lib/naverAuth.js";
@@ -10,19 +9,13 @@ export default async function originProductsHandler(
   try {
     const token = await getNaverAccessToken();
 
-    /**
-     * 클라이언트에서 그대로 body를 넘김
-     * 예:
-     * {
-     *   "page": 1,
-     *   "size": 500,
-     *   "productStatusTypes": ["SALE"]
-     * }
-     */
-    const body = req.body || {};
+    const body = req.body ?? {
+      page: 1,
+      size: 50,
+    };
 
     const response = await axios.post(
-      "https://api.commerce.naver.com/external/v2/products/origin-products",
+      "https://api.commerce.naver.com/external/v2/products/origin-products/search",
       body,
       {
         headers: {
