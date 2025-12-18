@@ -27,12 +27,12 @@ export default async function originProductsHandler(
       }
     );
 
-    const { totalCount = 0, contents = [] } = firstResponse.data;
+    const { totalElements = 0, contents = [] } = firstResponse.data;
     allProducts.push(...contents);
 
     const MAX_PAGES = 100;
     const totalPages = Math.min(
-      Math.ceil(totalCount / pageSize),
+      Math.ceil(totalElements / pageSize),
       MAX_PAGES
     );
 
@@ -60,7 +60,7 @@ export default async function originProductsHandler(
     }
 
     return res.status(200).json({
-      totalCount: allProducts.length,
+      totalElements: allProducts.length,
       contents: allProducts,
     });
   } catch (error: any) {
