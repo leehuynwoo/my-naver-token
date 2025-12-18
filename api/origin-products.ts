@@ -15,7 +15,7 @@ export default async function originProductsHandler(
     };
 
     const response = await axios.post(
-      "https://api.commerce.naver.com/external/v2/products/origin-products/search",
+      "https://api.commerce.naver.com/external/v1/products/search",
       body,
       {
         headers: {
